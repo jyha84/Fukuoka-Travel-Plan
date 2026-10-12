@@ -137,7 +137,7 @@ function prettyDate(iso){return new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/
 function fmt(n,unit=''){return Number.isFinite(n)?n.toFixed(1)+unit:'자료 없음'}
 function weatherName(code){if(code===0)return '☀️ 맑음';if([1,2].includes(code))return '🌤️ 대체로 맑음';if(code===3)return '☁️ 흐림';if([45,48].includes(code))return '🌫️ 안개';if([71,73,75,77,85,86].includes(code))return '🌨️ 눈';if([95,96,99].includes(code))return '⛈️ 뇌우';if([56,57,66,67].includes(code))return '🌧️ 어는 비';if([51,53,55,61,63,65,80,81,82].includes(code))return '🌧️ 비';return '날씨 상태 미제공'}
 function outfitAdvice({low,high,feelLow,feelHigh,rain,prob,wind,code,historical,wetRate}){
- const daytime=Number.isFinite(feelHigh)?Math.min(high,feelHigh):high;
+ const daytime=Number.isFinite(feelHigh)?feelHigh:high;
  const morning=Number.isFinite(feelLow)?Math.min(low,feelLow):low;
  let title,base;
  if(daytime<5){title='🧥 두꺼운 패딩으로 따뜻하게';base='보온 내의 + 니트·플리스 + 두꺼운 패딩, 두꺼운 바지와 양말을 준비하세요.'}
