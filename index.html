@@ -41,6 +41,7 @@
 .trip-flight{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:16px 0}
 .trip-flight div{display:grid;gap:4px}.trip-flight strong{font-size:28px;letter-spacing:-1px}.trip-flight small{font-size:13px;color:#726254}.trip-flight>span{color:#b9825f}
 .trip-list{margin:12px 0 0;padding-left:20px;font-size:14px;line-height:1.85;color:#66594e}
+.trip-actions{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}.trip-actions a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 15px;border:1px solid #c77b51;border-radius:12px;background:#fff1df;color:#8d4e31;font-size:14px;font-weight:800;text-decoration:none}.trip-actions a:hover{background:#ffe4c4}
 .trip-price{font-size:27px;font-weight:800;margin-top:12px;color:#8d4e31}.trip-price small{font-size:13px;font-weight:500}
 .trip-costs{margin:12px 0 0;font-size:14px}.trip-costs div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid #f0e5dc}.trip-costs dt{color:#6b5f55}.trip-costs dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}.trip-costs .total{font-weight:800;color:#8d4e31}
 .trip-alert{background:#fff3d9;border:1px solid #ebd6a8;border-radius:16px;padding:16px;margin:14px 0}.trip-alert h3{font-size:16px;margin:7px 0}
@@ -207,6 +208,8 @@ panels.schedule.innerHTML=`
   </ul>
   <div class="trip-price">¥18,220 <small>현지 결제 · 쿠폰 적용 후</small></div>
   <p>연료비와 고속도로 통행료는 별도예요.</p>
+  <div class="trip-actions"><a href="https://www.jalan.net/rentacar/mypage/?ccnt=top_menu_reserve_pc" target="_blank" rel="noopener noreferrer" aria-describedby="jalan-reservation-help">자란넷 예약내역 확인 ↗</a></div>
+  <p id="jalan-reservation-help" class="hint">じゃらんnet 공식 예약조회 · 새 창에서 열려요. 예약한 계정으로 로그인하면 렌터카 예약내역을 확인할 수 있어요.</p>
   <details class="trip-details"><summary>예약 금액 자세히 보기</summary>
    <dl class="trip-costs">
     <div><dt>기본 대여료</dt><dd>¥16,200</dd></div>
