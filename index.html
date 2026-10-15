@@ -361,6 +361,7 @@ nav.addEventListener('keydown',()=>{if(document.getElementById('tab-weather').ge
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&weatherActive&&!weatherPanel.hidden)loadWeather()});
 renderWeather(Array.from({length:5},(_,i)=>shiftDate('2026-12-27',i)),'fukuoka',null);
 if(initialTab==='weather'){weatherActive=true;loadWeather()}
+window.addEventListener('hashchange',()=>{const id=location.hash.slice(1);if(!defs.some(([key])=>key===id))return;selectTab(id);if(id==='weather'){weatherActive=true;loadWeather()}window.scrollTo({top:0,behavior:'smooth'})});
 
 </script></body></html>
 
