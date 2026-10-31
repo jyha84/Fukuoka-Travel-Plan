@@ -389,6 +389,21 @@ defs.forEach(([id,label])=>{
 });
 main.prepend(nav);Object.values(panels).forEach(p=>main.append(p));
 panels.tax.append(tax);panels.stay.append(stay,fashionSection);panels.stores.append(map,shopsSection);
+// Public photo location; the marker identifies the vending machine, not an exact camera position.
+const photoSection=document.createElement('section');photoSection.id='photo-spots';photoSection.style.scrollMarginTop='24px';photoSection.setAttribute('aria-labelledby','photo-spots-title');
+photoSection.innerHTML=`<div class="heritage-hero"><span class="heritage-eyebrow">FUKUOKA · PHOTO SPOTS</span><h2 id="photo-spots-title">📸 포토스팟</h2><p>여행 중 잠깐 들러 담아볼 후쿠오카의 한 장면.<br>촬영 위치와 주변 보행·차량 동선을 함께 확인해 주세요.</p></div>
+<article class="heritage-card" id="gundam-coke-photo" style="margin-top:14px;scroll-margin-top:24px">
+ <div class="heritage-card-top"><span class="heritage-icon" aria-hidden="true">🥤</span><div><span class="heritage-area">라라포트 후쿠오카 주변 · 하카타구 나카</span><h3>건담 RX-93 자판기 포토 스팟</h3><div class="jp" lang="ja">赤いコカ・コーラ自販機と実物大νガンダム</div></div></div>
+ <span class="chip">빨간 자판기 × 뒤편 건담</span>
+ <p class="heritage-description">빨간 코카콜라 자판기를 앞에, 라라포트의 건담을 뒤에 겹쳐 담는 거리 구도예요. 자판기를 찾은 뒤 같은 길에서 조금 떨어져, 두 대상이 함께 들어오는 방향으로 위치와 줌을 조절해 보세요.</p>
+ <p class="heritage-address" lang="ja">福岡市博多区那珂5丁目3-3 周辺</p>
+ <p class="note"><b>지도 핀: 자판기 위치</b> · 33.5660586, 130.4426678<br>핀은 사진가가 선 정확한 자리와 다릅니다. 촬영 거리와 줌에 따라 건담이 보이는 크기·겹침이 달라져요.</p>
+ <div class="heritage-links"><a href="https://www.google.com/maps/search/?api=1&query=33.5660586,130.4426678" target="_blank" rel="noopener noreferrer" aria-label="건담 자판기 포토스팟 좌표 지도">📍 자판기 위치 지도 ↗</a><a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=33.5660288,130.4426949&heading=320.77&pitch=0" target="_blank" rel="noopener noreferrer">거리뷰로 주변 확인 ↗</a></div>
+ <p class="note"><b>안전하게 촬영하기</b><br>보행 가능한 공간에서 차량·보행자 통행을 막지 말고, 차도나 사유지에 들어가 촬영하지 마세요. 자판기 이용자와 건물 출입구를 비워 주세요.</p>
+ <p class="foot">위치 대조: 2026.10.31 · 2024년 8월 거리뷰의 빨간 자판기·전봇대·베이지색 타일 건물·회색 문·울타리를 기준으로 확인했어요. 자판기와 주변 환경은 바뀔 수 있으며, 링크를 열면 다른 촬영 시점의 거리뷰가 표시될 수도 있어요.</p>
+</article>`;
+panels.stores.prepend(photoSection);
+
 const toolsBox=main.querySelector('.tools');
 const search=document.createElement('input');search.type='search';search.className='searchbox';search.placeholder='제품명 · 일본어 · 키워드 검색';search.setAttribute('aria-label','쇼핑 제품 검색');
 const pending=document.createElement('label');pending.className='pending-label';pending.innerHTML='<input type="checkbox"> 아직 안 산 제품만 보기';
@@ -716,9 +731,11 @@ nav.addEventListener('keydown',()=>{if(document.getElementById('tab-weather').ge
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&weatherActive&&!weatherPanel.hidden)loadWeather()});
 renderWeather(Array.from({length:5},(_,i)=>shiftDate('2026-12-27',i)),'fukuoka',null);
 if(initialTab==='weather'){weatherActive=true;loadWeather()}
+function showPhotoAnchor(){const id=location.hash.slice(1);if(!['photo-spots','gundam-coke-photo'].includes(id))return false;selectTab('stores');requestAnimationFrame(()=>document.getElementById(id)?.scrollIntoView({block:'start'}));return true}
+showPhotoAnchor();
 const valetAnchors=new Set(['trip-valet','valet-dropoff','valet-pickup','valet-payment']);
 function showValetAnchor(){const id=location.hash.slice(1);if(!valetAnchors.has(id))return false;selectTab('schedule');requestAnimationFrame(()=>document.getElementById(id)?.scrollIntoView({block:'start'}));return true}
-window.addEventListener('hashchange',()=>{if(showRestaurantAnchor()||showValetAnchor())return;const id=location.hash.slice(1);if(!defs.some(([key])=>key===id))return;selectTab(id);if(id==='weather'){weatherActive=true;loadWeather()}window.scrollTo({top:0,behavior:'smooth'})});
+window.addEventListener('hashchange',()=>{if(showPhotoAnchor()||showRestaurantAnchor()||showValetAnchor())return;const id=location.hash.slice(1);if(!defs.some(([key])=>key===id))return;selectTab(id);if(id==='weather'){weatherActive=true;loadWeather()}window.scrollTo({top:0,behavior:'smooth'})});
 showValetAnchor();
 
 </script></body></html>
